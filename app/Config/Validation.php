@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 class Validation
 {
@@ -28,6 +30,8 @@ class Validation
 	public $templates = [
 		'list'   => 'CodeIgniter\Validation\Views\list',
 		'single' => 'CodeIgniter\Validation\Views\single',
+		'errtemp' => '_error_temp',
+		'ertemp' => 'errtemp'
 	];
 
 	public $signin  = [

@@ -1,4 +1,6 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Sales;
@@ -30,9 +32,10 @@ class SalesController extends Controller
 	{
 		$data = [
 			'main'	=> 'page/sales/add',
-			'title'	=> 'Tambah Penjualan',
-			'customer'=> $this->customer->findAll(),
+			'title'	=> 'Form Penjualan',
+			'customer' => $this->customer->findAll(),
 			'no_urut' => $this->model->nourut(),
+			'action' => '/page/sales/store',
 		];
 		return view('page/main', $data);
 	}
@@ -57,20 +60,15 @@ class SalesController extends Controller
 			'students_parent_phone'		=> $this->request->getPost('students_parent_phone'),
 			'students_status'		=> $this->request->getPost('students_status'),
 		];
-		if ($this->form_validation->run($data, 'siswa') == FALSE ) {
+		if ($this->form_validation->run($data, 'siswa') == FALSE) {
 			// print_r($this->form_validation->getErrors()); die;
-			session()->setFlashdata('error_validation', ['class'=> 'danger', 'strong'=>'Upss!!','message'=>  $this->form_validation->getErrors()]);
+			session()->setFlashdata('error_validation', ['class' => 'danger', 'strong' => 'Upss!!', 'message' =>  $this->form_validation->getErrors()]);
 			return redirect()->back()->withInput();
-		}else{
+		} else {
 			$this->model->save($data);
-			session()->setFlashData('notif','Data berhasil ditambah');
+			session()->setFlashData('notif', 'Data berhasil ditambah');
 			return redirect()->to('/admin/siswa');
-
 		}
-		
-
-
-
 	}
 
 	public function update($id = null)
@@ -80,7 +78,7 @@ class SalesController extends Controller
 			'main'	=> 'page/siswa/edit',
 			'title'	=> 'Ubah  Siswa : ' . $data['students_fullname'],
 			'edit_data'	=> $data,
-			'kelas'=> $this->kelas->findAll(),
+			'kelas' => $this->kelas->findAll(),
 		];
 		return view('page/main', $data);
 	}
@@ -105,24 +103,22 @@ class SalesController extends Controller
 			'students_status'		=> $this->request->getPost('students_status'),
 		];
 
-		if ($this->form_validation->run($data, 'siswa') == FALSE ) {
+		if ($this->form_validation->run($data, 'siswa') == FALSE) {
 			// print_r($this->form_validation->getErrors()); die;
-			session()->setFlashdata('error_validation', ['class'=> 'danger', 'strong'=>'Upss!!','message'=>  $this->form_validation->getErrors()]);
+			session()->setFlashdata('error_validation', ['class' => 'danger', 'strong' => 'Upss!!', 'message' =>  $this->form_validation->getErrors()]);
 			return redirect()->back()->withInput();
-		}else{
-			
+		} else {
+
 			$this->model->update($id, $this->request->getPost());
-			session()->setFlashData('notif','Data berhasil diubah');
+			session()->setFlashData('notif', 'Data berhasil diubah');
 			return redirect()->to('/admin/siswa');
-
 		}
-
 	}
 
 	public function delete($id = null)
 	{
 		$this->model->delete($id);
-		session()->setFlashData('notif','Data berhasil dihapus');
+		session()->setFlashData('notif', 'Data berhasil dihapus');
 		return redirect()->to('/admin/siswa');
 	}
 
@@ -133,7 +129,7 @@ class SalesController extends Controller
 			'main'	=> 'page/siswa/detail',
 			'title'	=> 'Detail  Siswa : ' . $data['students_fullname'],
 			'detail'	=> $data,
-			'kelas'=> $this->kelas->findAll(),
+			'kelas' => $this->kelas->findAll(),
 		];
 		return view('page/main', $data);
 	}
@@ -152,9 +148,9 @@ class SalesController extends Controller
 	{
 		if ($id !== null) {
 			$data = $this->model->find($id);
-			$dompdf = new Dompdf(); 
-			$options = new Options(); 
-			$options->set('defaultFont','Arial');
+			$dompdf = new Dompdf();
+			$options = new Options();
+			$options->set('defaultFont', 'Arial');
 
 			$data = [
 				'title'	=> 'Data Siswa',
@@ -163,8 +159,13 @@ class SalesController extends Controller
 			$dompdf->loadHtml(view('page/print_view', $data));
 			$dompdf->setPaper('A4', 'potrait');
 			$dompdf->render();
-			$dompdf->stream('cetak_siswa.pdf', array('Attachment'=>false));
+			$dompdf->stream('cetak_siswa.pdf', array('Attachment' => false));
 		}
+	}
+
+	public function cetak()
+	{
+		return view('print');
 	}
 
 	public function cek_print()

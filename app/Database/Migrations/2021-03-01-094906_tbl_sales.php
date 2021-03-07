@@ -1,4 +1,6 @@
-<?php namespace App\Database\Migrations;
+<?php
+
+namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -6,13 +8,14 @@ class TblSales extends Migration
 {
 	public function up()
 	{
-		$this->db->enableForeignKeyChecks();
+		$this->db->disableForeignKeyChecks();
+		// $this->db->enableForeignKeyChecks();
 		$this->forge->addField([
 			'id'	=> [
 				'type'			=> 'INT',
 				'constraint'	=> 11,
-				'auto_increment'=> true,
-			],	
+				'auto_increment' => true,
+			],
 
 			'customer_id'	=> [
 				'type'			=> 'int',
@@ -60,8 +63,8 @@ class TblSales extends Migration
 		]);
 
 		$this->forge->addKey('id', true);
-		$this->forge->addForeignKey('customer_id','customer','id','RESTRICT','RESTRICT');
-		$this->forge->addForeignKey('operator_id','operator','id','RESTRICT','RESTRICT');
+		$this->forge->addForeignKey('customer_id', 'customer', 'id', 'RESTRICT', 'RESTRICT');
+		$this->forge->addForeignKey('operator_id', 'operator', 'id', 'RESTRICT', 'RESTRICT');
 		$this->forge->createTable('tr_sales');
 	}
 

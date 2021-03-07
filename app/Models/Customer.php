@@ -1,16 +1,18 @@
-<?php namespace App\Models;
+<?php
+
+namespace App\Models;
 
 use CodeIgniter\Model;
 
 class Customer extends Model
 {
-	protected $table      = 'customer';
+    protected $table      = 'customer';
     protected $primaryKey = 'id';
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['price_id', 'customer_name','customer_telphone','customer_pic','customer_address','customer_hp','customer_nopol'];
+    protected $allowedFields = ['jenis_id', 'customer_name', 'customer_telphone', 'customer_pic', 'customer_address', 'customer_hp', 'customer_nopol'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
@@ -25,14 +27,22 @@ class Customer extends Model
 
     public function getData()
     {
-        $query = $this->select('price.price_type, customer.*')
-        ->join('price','price.id = customer.price_id')
-        ->orderBy('customer.id','desc')
-        ->findAll();
+        $query = $this->select('jenis.jenis_customer, customer.*')
+            ->join('jenis', 'jenis.id = customer.jenis_id')
+            ->orderBy('customer.id', 'desc')
+            ->findAll();
 
         return $query;
     }
 
 
-    
+    public function getWhere($id)
+    {
+        $query = $this->select('*')
+            ->join('jenis', 'jenis.id = customer.jenis_id')
+            ->orderBy('customer.id', 'desc')
+            ->find($id);
+
+        return $query;
+    }
 }

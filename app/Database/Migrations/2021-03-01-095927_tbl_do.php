@@ -1,4 +1,6 @@
-<?php namespace App\Database\Migrations;
+<?php
+
+namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -6,13 +8,14 @@ class TblDo extends Migration
 {
 	public function up()
 	{
-		$this->db->enableForeignKeyChecks();
+		$this->db->disableForeignKeyChecks();
+		// $this->db->enableForeignKeyChecks();
 		$this->forge->addField([
 			'id'	=> [
 				'type'			=> 'INT',
 				'constraint'	=> 11,
-				'auto_increment'=> true,
-			],	
+				'auto_increment' => true,
+			],
 
 			'sales_id'	=> [
 				'type'			=> 'int',
@@ -29,7 +32,7 @@ class TblDo extends Migration
 				'type'			=> 'varchar',
 				'constraint'	=> 20,
 			],
-			
+
 
 			'do_phone'	=> [
 				'type'			=> 'varchar',
@@ -58,7 +61,7 @@ class TblDo extends Migration
 		]);
 
 		$this->forge->addKey('id', true);
-		$this->forge->addForeignKey('sales_id','sales','id','RESTRICT','RESTRICT');
+		$this->forge->addForeignKey('sales_id', 'sales', 'id', 'RESTRICT', 'RESTRICT');
 		$this->forge->createTable('do');
 	}
 

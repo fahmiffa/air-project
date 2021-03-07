@@ -1,4 +1,6 @@
-<?php namespace App\Database\Migrations;
+<?php
+
+namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
@@ -6,14 +8,15 @@ class TblPelanggan extends Migration
 {
 	public function up()
 	{
-		$this->db->enableForeignKeyChecks();
+		$this->db->disableForeignKeyChecks();
+		// $this->db->enableForeignKeyChecks();
 		$this->forge->addField([
 			'id'	=> [
 				'type'			=> 'INT',
 				'constraint'	=> 11,
-				'auto_increment'=> true,
+				'auto_increment' => true,
 			],
-			'price_id'	=> [
+			'jenis_id'	=> [
 				'type'			=> 'INT',
 				'constraint'	=> 11,
 			],
@@ -40,6 +43,10 @@ class TblPelanggan extends Migration
 				'type'			=> 'VARCHAR',
 				'constraint'	=> 100,
 			],
+			'customer_nopol'		=> [
+				'type'			=> 'VARCHAR',
+				'constraint'	=> 10,
+			],
 
 			'deleted_at'	=> [
 				'type'			=> 'DATETIME',
@@ -57,7 +64,6 @@ class TblPelanggan extends Migration
 			],
 		]);
 		$this->forge->addKey('id', true);
-		$this->forge->addForeignKey('price_id','price','id','RESTRICT','RESTRICT');
 		$this->forge->createTable('customer');
 	}
 

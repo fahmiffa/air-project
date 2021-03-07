@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?php echo isset($title)?$title:'' ?></title>
+  <title><?php echo isset($title) ? $title : '' ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,15 +18,17 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/icheck-bootstrap.min.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/jqvmap.min.css">
+
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
-  <link href="<?php echo base_url() ?>/assets/css/bootstrap-datepicker.css" rel="stylesheet"/>
+  <link href="<?php echo base_url() ?>/assets/css/bootstrap-datepicker.css" rel="stylesheet" />
 
   <!-- data tables -->
-  <link href="<?php echo base_url() ?>/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+  <link href="<?php echo base_url() ?>/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
   <!-- jQuery -->
   <script src="<?php echo base_url() ?>/assets/js/jquery.min.js"></script>
@@ -33,7 +36,8 @@
   <script src="<?php echo base_url() ?>/assets/js/jquery-ui.min.js"></script>
 
   <style>
-    .btn-group-xs > .btn, .btn-xs {
+    .btn-group-xs>.btn,
+    .btn-xs {
       padding: .25rem .4rem;
       font-size: .875rem;
       line-height: .5;
@@ -41,7 +45,7 @@
     }
 
     label {
-      font-size:13px;
+      font-size: 13px;
     }
 
     .geser-radio {
@@ -53,6 +57,7 @@
     }
   </style>
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
@@ -72,7 +77,7 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0"><?php echo isset($title)?$title:'' ?></h1>
+              <h1 class="m-0"><?php echo isset($title) ? $title : '' ?></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -89,121 +94,180 @@
       <section class="content">
         <div class="container-fluid">
           <!-- alert -->
-          <?php if (!empty(session()->getFlashData('notif'))): ?>
-          <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>Berhasil!!</strong> <?php echo session()->getFlashData('notif') ?>
+          <?php if (!empty(session()->getFlashData('notif'))) : ?>
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <strong>Berhasil!!</strong> <?php echo session()->getFlashData('notif') ?>
+            </div>
+          <?php endif ?>
+          <!-- Main row -->
+          <div class="main-content">
+            <?php echo view($main); ?>
           </div>
-        <?php endif ?>
-        <!-- Main row -->
-        <div class="main-content">
-          <?php echo view($main); ?>
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0-rc
+          <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
     </div>
-  </footer>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.1.0-rc
+      </div>
+    </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="<?php echo base_url() ?>/assets/js/bootstrap.bundle.min.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?php echo base_url() ?>/assets/js/jquery.knob.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="<?php echo base_url() ?>/assets/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url() ?>/assets/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url() ?>/assets/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url() ?>/assets/js/dashboard.js"></script>
-<!-- datepicker -->
-<script src="<?php echo base_url() ?>/assets/js/bootstrap-datepicker.js"></script>
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="<?php echo base_url() ?>/assets/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url() ?>/assets/js/dataTables.bootstrap4.min.js"></script>
-
-<script src="<?php echo base_url() ?>assets/js/app.js"></script>
-<script>
-
-  $('.tableData').DataTable();
-  $(".datepicker").datepicker({
-    format: "yyyy",
-    viewMode: "years", 
-    minViewMode: "years",
-    autoclose: true,
-  });
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
 
 
-  $('#submit').click(function(event) {
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="<?php echo base_url() ?>/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="<?php echo base_url() ?>/assets/js/select2.full.min.js"></script>
+  <script src="<?php echo base_url() ?>/assets/js/bootbox.min.js"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="<?php echo base_url() ?>/assets/js/jquery.knob.min.js"></script>
+  <!-- overlayScrollbars -->
+  <script src="<?php echo base_url() ?>/assets/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<?php echo base_url() ?>/assets/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="<?php echo base_url() ?>/assets/js/demo.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <!-- <script src="<?php echo base_url() ?>/assets/js/dashboard.js"></script> -->
+  <!-- datepicker -->
+  <script src="<?php echo base_url() ?>/assets/js/bootstrap-datepicker.js"></script>
 
-    var form= $('#form'), formUrl = form.attr('action'), 
-    level_name = form.find('input[type="text"]').val(),
-    level_status = form.find('input[type="radio"]').val();
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="<?php echo base_url() ?>/assets/js/jquery.dataTables.min.js"></script>
+  <script src="<?php echo base_url() ?>/assets/js/dataTables.bootstrap4.min.js"></script>
+
+  <script src="<?php echo base_url() ?>assets/js/app.js"></script>
+  <script>
+    $('.tableData').DataTable();
+    $(".datepicker").datepicker({
+      format: "yyyy",
+      viewMode: "years",
+      minViewMode: "years",
+      autoclose: true,
+    });
 
 
-    if (form.find('input[type="text"]').val()  == "") {
-      showAlert("warning","Upss!!","Nama Level tidak boleh kosong");
-      return false;
+    $('#submit').click(function(event) {
+
+      var form = $('#form'),
+        formUrl = form.attr('action'),
+        level_name = form.find('input[type="text"]').val(),
+        level_status = form.find('input[type="radio"]').val();
+
+
+      if (form.find('input[type="text"]').val() == "") {
+        showAlert("warning", "Upss!!", "Nama Level tidak boleh kosong");
+        return false;
+      }
+
+
+
+      $.ajax({
+        url: formUrl,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          "level_name": level_name,
+          "level_status": level_status,
+        },
+        success: function(data) {
+          if (data.success == true) {
+            showAlert("success", "Yeay!!", "Berhasil ditambah");
+            clearAll();
+            $('#exampleModal').modal('hide');
+          }
+        }
+      });
+
+    });
+
+
+
+    function clearAll() {
+      $('#form').find("input").val("");
+      $('#form').find("input[type='radio']").prop('checked', false)
+    }
+
+    function showAlert(icon, title, text) {
+      Swal.fire({
+        icon: icon,
+        title: title,
+        text: text
+      });
     }
 
 
 
-    $.ajax({
-      url: formUrl,
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        "level_name" : level_name,
-        "level_status": level_status,
-      },
-      success:function(data){
-        if (data.success == true) {
-         showAlert("success","Yeay!!","Berhasil ditambah");
-         clearAll();
-         $('#exampleModal').modal('hide');
-       }
-     }
-   });
+    $('#form').submit(function(e) {
+      e.preventDefault();
 
-  });
+      var formData = new FormData($("#form")[0]);
+
+      $.ajax({
+        url: $("#form").attr('action'),
+        type: 'post',
+        data: formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          if (response.success === true) {
+            $("#form")[0].reset();
+            //   $(".text-danger").remove();
+
+            if (typeof(response.redirect) !== 'undefined') {
+              document.location.href = response.redirect;
+            }
+
+            if (typeof(response.siswa) !== 'undefined') {
+              $("#con").html(response.siswa);
+            }
+
+            if (typeof(response.msg) !== 'undefined') {
+              bootbox.dialog({
+                size: 'large',
+                closeButton: false,
+                message: response.msg,
+              });
+            }
+
+          } else {
+            $.each(response.messages, function(key, value) {
+              var element = $('#' + key);
+              element.removeClass('is-invalid')
+                .addClass(value.length > 0 ? 'is-invalid' : 'valid');
+              element.closest('div.form-group')
+                .find('.text-danger').remove();
+              element.after(value);
+            });
+          }
+        }
+      });
+    });
 
 
-
-function clearAll(){
-  $('#form').find("input").val("");
-  $('#form').find("input[type='radio']").prop('checked',false)
-}
-function  showAlert(icon, title, text){
-  Swal.fire({
-    icon: icon,
-    title: title,
-    text: text
-  });
-}
-</script>
+    $(document).on("click", ".open", function(e) {
+      var id = $(this).attr("id");
+      $("#nis").val(id);
+    });
+  </script>
 
 </body>
+
 </html>

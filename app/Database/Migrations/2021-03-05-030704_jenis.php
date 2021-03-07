@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TblHarga extends Migration
+class Jenis extends Migration
 {
 	public function up()
 	{
@@ -15,17 +15,12 @@ class TblHarga extends Migration
 				'auto_increment' => true,
 			],
 
-			'price_value'	=> [
+			'jenis_value'	=> [
 				'type'			=> 'int',
 				'constraint'	=> 5,
 			],
 
-			'price_status'	=> [
-				'type'			=> 'int',
-				'constraint'	=> 5,
-			],
-
-			'price_type'	=> [
+			'jenis_customer'	=> [
 				'type'			=> 'varchar',
 				'constraint'	=> 10,
 			],
@@ -47,13 +42,13 @@ class TblHarga extends Migration
 		]);
 
 		$this->forge->addKey('id', true);
-		$this->forge->createTable('price');
+		$this->forge->createTable('jenis');
 	}
 
 	//--------------------------------------------------------------------
 
 	public function down()
 	{
-		$this->forge->dropTable('price');
+		$this->forge->dropTable('jenis');
 	}
 }

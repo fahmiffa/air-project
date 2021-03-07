@@ -10,6 +10,14 @@
 $(function () {
   'use strict'
 
+  $('.select2').select2()
+
+  //Initialize Select2 Elements
+  $('.select2bs4').select2({
+    theme: 'bootstrap4'
+  })
+
+
   // Make the dashboard widgets sortable Using jquery UI
   $('.connectedSortable').sortable({
     placeholder: 'sort-highlight',

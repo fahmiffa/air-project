@@ -1,7 +1,10 @@
-<?php namespace App\Controllers;
+<?php
+
+namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\Level;
+use App\Models\Harga;
 use App\Models\Customer;
 
 class Ajax extends Controller
@@ -11,7 +14,7 @@ class Ajax extends Controller
 	{
 		$this->level = new Level();
 		$this->customer = new Customer();
-		
+		$this->harga = new Harga();
 	}
 	public function store_level()
 	{
@@ -29,18 +32,19 @@ class Ajax extends Controller
 
 			echo json_encode($res);
 		}
-	}	
+	}
 
 	public function getCustomer($id = null)
 	{
-		$customer = $this->customer->where('id', $id)->first();
+		$customer = $this->customer->getWhere($id);
+
 		if (!$customer) {
 			$data = [
 				'success' 	=> false,
 				'data'		=> "",
-				'status'	=>200,
+				'status'	=> 200,
 			];
-		}else{
+		} else {
 			$data = [
 				'success'	=> true,
 				'data'		=> $customer,
@@ -51,4 +55,12 @@ class Ajax extends Controller
 		echo json_encode($data);
 	}
 
+
+
+	public function getHarga()
+	{
+		$data = $this->harga->orderBy('id', 'desc')->findAll();
+
+		echo json_encode($data);
+	}
 }
